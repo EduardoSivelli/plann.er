@@ -6,6 +6,8 @@ import {
   ScrollView,
   Modal as RNModal,
   TouchableOpacity,
+  KeyboardAvoidingView,
+  Platform,
 } from "react-native"
 import { BlurView } from "expo-blur"
 
@@ -33,6 +35,7 @@ export function Modal({
         experimentalBlurMethod="dimezisBlurView"
       >
         <View className="flex-1 justify-end bg-black/60">
+          <KeyboardAvoidingView behavior={Platform.OS === 'ios' ? 'padding' : 'height'}>
           <View className="bg-zinc-900 border-t border-zinc-700 px-6 pt-5 pb-10">
             <ScrollView showsVerticalScrollIndicator={false}>
               <View className="flex-row justify-between items-center pt-5">
@@ -54,6 +57,7 @@ export function Modal({
               {children}
             </ScrollView>
           </View>
+          </KeyboardAvoidingView>
         </View>
       </BlurView>
     </RNModal>
